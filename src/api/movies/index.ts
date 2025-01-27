@@ -1,4 +1,4 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
 export const useGetAllMoviesByInfiniteQuery = () => {
   return useInfiniteQuery({
@@ -15,3 +15,14 @@ export const useGetAllMoviesByInfiniteQuery = () => {
     initialPageParam: 1,
   });
 };
+
+export const useGetMovieById = (movieId: number) => {
+  return useQuery({
+    queryKey: ["movie-infos", movieId],
+    queryFn: () => {
+      return fetch(
+        `https://api.themoviedb.org/3/movie/${movieId}?api_key=a341a9d7cb2bd4eba1b729d6e957cbf9`
+      ).then((res) => res.json());
+    },
+  });
+}

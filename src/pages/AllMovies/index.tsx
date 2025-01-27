@@ -1,9 +1,10 @@
-import { Box, Button, CircularProgress, Container } from "@mui/material";
+import { Box, CircularProgress, Container } from "@mui/material";
 import { useGetAllMoviesByInfiniteQuery } from "../../api/movies";
 import MovieCard from "./MovieCard";
 import movieType from "../../types/movie";
 
 const AllMovies = () => {
+  
   const movies = useGetAllMoviesByInfiniteQuery();
 
   return (
@@ -27,6 +28,7 @@ const AllMovies = () => {
                   return (
                     <MovieCard
                       key={movie.id}
+                      movieId={movie.id}
                       movieTitle={movie.title}
                       movieSynopsis={movie.overview}
                       movieImage={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
